@@ -60,43 +60,38 @@ final class MainViewController: UICollectionViewController {
         
         fetchData()
         setItemSize()
+        
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    }
-    
-    private func setItemSize() {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(
-            width: (collectionView.frame.size.width - 70) / 2,
-            height: collectionView.frame.size.height / 5
-        )
     }
     
     // MARK: UICollectionViewDataSource
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int {
         return Cryptos.allCases.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
         let currencyName = Cryptos.allCases
+        
         cell.cryptoImage.image = cryptoImage[indexPath.item]
         cell.CryptoLabel.text = currencyName[indexPath.item].rawValue
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
-        
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didSelectItemAt indexPath: IndexPath) {
         let currency = Cryptos.allCases
         let selectedCurrency = currency[indexPath.item]
         let cell = collectionView.cellForItem(at: indexPath)
+        
         cell?.alpha = 0.6
+        
         switch selectedCurrency {
         case .btc:
             showCurrentPrice(title: "Price for 1 BTC is:", message: btcPrice)
@@ -120,12 +115,13 @@ final class MainViewController: UICollectionViewController {
             showCurrentPrice(title: "Price for 1 BTC is:", message: dotPrice)
         case .yfi:
             showCurrentPrice(title: "Price for 1 BTC is:", message: yfiPrice)
-        case .usd:
+        default:
             showCurrentPrice(title: "Price for 1 BTC is:", message: usdPrice)
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
     }
@@ -133,14 +129,24 @@ final class MainViewController: UICollectionViewController {
 
 extension MainViewController {
     
+    private func setItemSize() {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(
+            width: (collectionView.frame.size.width - 70) / 2,
+            height: collectionView.frame.size.height / 5
+        )
+    }
+    
     private func fetchData() {
         guard let url = URL(string: cryptoUrl) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "No error")
+                print(error?.localizedDescription ?? "Error")
                 return
             }
-            
             do {
                 let decoder = try JSONDecoder().decode(Rates.self, from: data)
                 self?.setPrices(currency: decoder.rates)
@@ -182,7 +188,6 @@ extension MainViewController {
             dotPrice = self.formatPrice(currency.dot)
             yfiPrice = self.formatPrice(currency.yfi)
             usdPrice = self.formatPrice(currency.usd)
-            
         }
     }
     

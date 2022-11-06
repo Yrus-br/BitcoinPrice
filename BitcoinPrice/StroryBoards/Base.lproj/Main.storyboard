@@ -19,13 +19,13 @@
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wus-aZ-2zn">
                             <size key="itemSize" width="150" height="140"/>
-                            <size key="headerReferenceSize" width="10" height="10"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="crypto" id="C7d-MC-jQG" customClass="CryptoCell" customModule="BitcoinPrice" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="10" width="150" height="140"/>
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yh1-OK-hi2">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="140"/>
@@ -58,10 +58,6 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1lS-Sa-eCS">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="10"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="HOr-Yb-eAg" id="2qj-8w-Cdf"/>
                             <outlet property="delegate" destination="HOr-Yb-eAg" id="Yig-Mr-2I1"/>
