@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Crypto-->
+        <!--Bitcoin Price in:-->
         <scene sceneID="aHk-ie-ml0">
             <objects>
                 <collectionViewController id="HOr-Yb-eAg" customClass="MainViewController" customModule="BitcoinPrice" sceneMemberID="viewController">
@@ -67,7 +67,7 @@
                             <outlet property="delegate" destination="HOr-Yb-eAg" id="Yig-Mr-2I1"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Crypto" id="bk1-Pk-u2c"/>
+                    <navigationItem key="navigationItem" title="Bitcoin Price in:" id="bk1-Pk-u2c"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mn-u3-yGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
