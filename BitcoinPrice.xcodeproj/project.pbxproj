@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		3F7BCA1E2916FCBB0059A63B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA1D2916FCBB0059A63B /* AppDelegate.swift */; };
 		3F7BCA202916FCBB0059A63B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA1F2916FCBB0059A63B /* SceneDelegate.swift */; };
-		3F7BCA222916FCBB0059A63B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA212916FCBB0059A63B /* ViewController.swift */; };
 		3F7BCA252916FCBB0059A63B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7BCA232916FCBB0059A63B /* Main.storyboard */; };
 		3F7BCA272916FCBB0059A63B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7BCA262916FCBB0059A63B /* Assets.xcassets */; };
 		3F7BCA2A2916FCBB0059A63B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7BCA282916FCBB0059A63B /* LaunchScreen.storyboard */; };
+		3F7BCA372917024A0059A63B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA362917024A0059A63B /* MainViewController.swift */; };
+		3F7BCA7D2917EE8C0059A63B /* CryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F7BCA1A2916FCBB0059A63B /* BitcoinPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7BCA1D2916FCBB0059A63B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7BCA1F2916FCBB0059A63B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3F7BCA212916FCBB0059A63B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F7BCA242916FCBB0059A63B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F7BCA262916FCBB0059A63B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7BCA292916FCBB0059A63B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F7BCA2B2916FCBB0059A63B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F7BCA362917024A0059A63B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,40 @@
 		3F7BCA1C2916FCBB0059A63B /* BitcoinPrice */ = {
 			isa = PBXGroup;
 			children = (
-				3F7BCA1D2916FCBB0059A63B /* AppDelegate.swift */,
-				3F7BCA1F2916FCBB0059A63B /* SceneDelegate.swift */,
-				3F7BCA212916FCBB0059A63B /* ViewController.swift */,
-				3F7BCA232916FCBB0059A63B /* Main.storyboard */,
+				3F7BCA322916FDE70059A63B /* App */,
+				3F7BCA332916FE070059A63B /* ViewControllers */,
+				3F7BCA312916FDD40059A63B /* StroryBoards */,
 				3F7BCA262916FCBB0059A63B /* Assets.xcassets */,
-				3F7BCA282916FCBB0059A63B /* LaunchScreen.storyboard */,
-				3F7BCA2B2916FCBB0059A63B /* Info.plist */,
+				3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */,
 			);
 			path = BitcoinPrice;
+			sourceTree = "<group>";
+		};
+		3F7BCA312916FDD40059A63B /* StroryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				3F7BCA232916FCBB0059A63B /* Main.storyboard */,
+				3F7BCA282916FCBB0059A63B /* LaunchScreen.storyboard */,
+			);
+			path = StroryBoards;
+			sourceTree = "<group>";
+		};
+		3F7BCA322916FDE70059A63B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3F7BCA1D2916FCBB0059A63B /* AppDelegate.swift */,
+				3F7BCA1F2916FCBB0059A63B /* SceneDelegate.swift */,
+				3F7BCA2B2916FCBB0059A63B /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3F7BCA332916FE070059A63B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F7BCA362917024A0059A63B /* MainViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +165,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F7BCA222916FCBB0059A63B /* ViewController.swift in Sources */,
+				3F7BCA372917024A0059A63B /* MainViewController.swift in Sources */,
 				3F7BCA1E2916FCBB0059A63B /* AppDelegate.swift in Sources */,
+				3F7BCA7D2917EE8C0059A63B /* CryptoCell.swift in Sources */,
 				3F7BCA202916FCBB0059A63B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,12 +317,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6U3L4PT52;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BitcoinPrice/Info.plist;
+				INFOPLIST_FILE = BitcoinPrice/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +331,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = myNameAndI.BitcoinPrice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +349,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6U3L4PT52;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BitcoinPrice/Info.plist;
+				INFOPLIST_FILE = BitcoinPrice/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +363,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = myNameAndI.BitcoinPrice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
