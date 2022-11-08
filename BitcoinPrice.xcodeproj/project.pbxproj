@@ -14,6 +14,9 @@
 		3F7BCA2A2916FCBB0059A63B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7BCA282916FCBB0059A63B /* LaunchScreen.storyboard */; };
 		3F7BCA372917024A0059A63B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA362917024A0059A63B /* MainViewController.swift */; };
 		3F7BCA7D2917EE8C0059A63B /* CryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */; };
+		3F86845B291AC20700DC0F9C /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86845A291AC20700DC0F9C /* NetworkingManager.swift */; };
+		3F86845F291AC24400DC0F9C /* BtcRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86845E291AC24400DC0F9C /* BtcRates.swift */; };
+		3F868461291AC59900DC0F9C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F868460291AC59900DC0F9C /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		3F7BCA2B2916FCBB0059A63B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7BCA362917024A0059A63B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCell.swift; sourceTree = "<group>"; };
+		3F86845A291AC20700DC0F9C /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		3F86845E291AC24400DC0F9C /* BtcRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtcRates.swift; sourceTree = "<group>"; };
+		3F868460291AC59900DC0F9C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +64,13 @@
 		3F7BCA1C2916FCBB0059A63B /* BitcoinPrice */ = {
 			isa = PBXGroup;
 			children = (
+				3F7BCA312916FDD40059A63B /* StroryBoards */,
 				3F7BCA322916FDE70059A63B /* App */,
 				3F7BCA332916FE070059A63B /* ViewControllers */,
-				3F7BCA312916FDD40059A63B /* StroryBoards */,
-				3F7BCA262916FCBB0059A63B /* Assets.xcassets */,
+				3F868459291AC1CE00DC0F9C /* Resources */,
+				3F86845C291AC21C00DC0F9C /* Services */,
+				3F86845D291AC22600DC0F9C /* Models */,
+				3F868458291AC1B500DC0F9C /* Views */,
 			);
 			path = BitcoinPrice;
 			sourceTree = "<group>";
@@ -89,17 +98,41 @@
 			isa = PBXGroup;
 			children = (
 				3F7BCA362917024A0059A63B /* MainViewController.swift */,
-				3F7BCA7E291833540059A63B /* CollectionCells */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3F7BCA7E291833540059A63B /* CollectionCells */ = {
+		3F868458291AC1B500DC0F9C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */,
 			);
-			path = CollectionCells;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3F868459291AC1CE00DC0F9C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F7BCA262916FCBB0059A63B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F86845C291AC21C00DC0F9C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F86845A291AC20700DC0F9C /* NetworkingManager.swift */,
+				3F868460291AC59900DC0F9C /* DataManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F86845D291AC22600DC0F9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F86845E291AC24400DC0F9C /* BtcRates.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,8 +207,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F7BCA372917024A0059A63B /* MainViewController.swift in Sources */,
+				3F86845F291AC24400DC0F9C /* BtcRates.swift in Sources */,
 				3F7BCA1E2916FCBB0059A63B /* AppDelegate.swift in Sources */,
+				3F868461291AC59900DC0F9C /* DataManager.swift in Sources */,
 				3F7BCA7D2917EE8C0059A63B /* CryptoCell.swift in Sources */,
+				3F86845B291AC20700DC0F9C /* NetworkingManager.swift in Sources */,
 				3F7BCA202916FCBB0059A63B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
