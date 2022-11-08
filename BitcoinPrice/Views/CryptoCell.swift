@@ -11,3 +11,4 @@ class CryptoCell: UICollectionViewCell {
     @IBOutlet var cryptoImage: UIImageView!
     @IBOutlet var CryptoLabel: UILabel!
 }
+

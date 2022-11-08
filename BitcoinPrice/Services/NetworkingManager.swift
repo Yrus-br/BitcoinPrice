@@ -46,5 +46,4 @@ class NetworkManager {
     }
     
     private init() {}
-    
 }
