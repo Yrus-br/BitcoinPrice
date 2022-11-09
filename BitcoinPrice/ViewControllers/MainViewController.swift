@@ -61,7 +61,7 @@ final class MainViewController: UICollectionViewController {
         let cryptocell = allCryptos[indexPath.item]
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 0.6
-        
+        showCurrentPrice(title: "\(cryptoCurrency?.rates)", message: "")
        
     }
     
