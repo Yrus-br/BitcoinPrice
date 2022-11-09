@@ -62,32 +62,7 @@ final class MainViewController: UICollectionViewController {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 0.6
         
-        switch cryptocell {
-        case .btc:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.usd.name ?? ""):", message: "\(cryptoCurrency?.rates.usd.value ?? 0) \(cryptoCurrency?.rates.usd.unit ?? "")")
-        case .eth: ()
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.eth.name ?? ""):", message: "\(cryptoCurrency?.rates.eth.value ?? 0) \(cryptoCurrency?.rates.eth.unit ?? "")")
-        case .ltc:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.ltc.name ?? ""):", message: "\(cryptoCurrency?.rates.ltc.value ?? 0) \(cryptoCurrency?.rates.ltc.unit ?? "")")
-        case .bch:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.bch.name ?? ""):", message: "\(cryptoCurrency?.rates.bch.value ?? 0) \(cryptoCurrency?.rates.bch.unit ?? "")")
-        case .bnb:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.bnb.name ?? ""):", message: "\(cryptoCurrency?.rates.bnb.value ?? 0) \(cryptoCurrency?.rates.bnb.unit ?? "")")
-        case .eos:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.eos.name ?? ""):", message: "\(cryptoCurrency?.rates.eos.value ?? 0) \(cryptoCurrency?.rates.eos.unit ?? "")")
-        case .xrp:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.xrp.name ?? ""):", message: "\(cryptoCurrency?.rates.xrp.value ?? 0) \(cryptoCurrency?.rates.xrp.unit ?? "")")
-        case .xlm:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.xlm.name ?? ""):", message: "\(cryptoCurrency?.rates.xlm.value ?? 0) \(cryptoCurrency?.rates.xlm.unit ?? "")")
-        case .link:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.link.name ?? ""):", message: "\(cryptoCurrency?.rates.link.value ?? 0) \(cryptoCurrency?.rates.link.unit ?? "")")
-        case .dot:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.dot.name ?? ""):", message: "\(cryptoCurrency?.rates.dot.value ?? 0) \(cryptoCurrency?.rates.dot.unit ?? "")")
-        case .yfi:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.yfi.name ?? ""):", message: "\(cryptoCurrency?.rates.yfi.value ?? 0) \(cryptoCurrency?.rates.yfi.unit ?? "")")
-        default:
-            showCurrentPrice(title: "Price for 1 BTC in \(cryptoCurrency?.rates.usd.name ?? ""):", message: "\(cryptoCurrency?.rates.usd.value ?? 0) \(cryptoCurrency?.rates.usd.unit ?? "")")
-        }
+       
     }
     
     override func collectionView(_ collectionView: UICollectionView,
