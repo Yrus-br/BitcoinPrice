@@ -7,50 +7,32 @@
 
 import UIKit
 
-enum Cryptos: String, CaseIterable {
-    case btc = "Bitcoin"
-    case eth = "Etherium"
-    case ltc = "Litecoin"
-    case bch = "Bitcoin Cash"
-    case bnb = "Binance Coin"
-    case eos = "Eos"
-    case xrp = "XRP"
-    case xlm = "XLM"
-    case link = "ChainLink"
-    case dot = "Polkadot"
-    case yfi = "YFI"
-    case usd = "USD"
-}
-
 final class MainViewController: UICollectionViewController {
     
-    let allCryptos = Cryptos.allCases
     var cryptoCurrency: BtcRates?
+    var nameOfCurrency: Rate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setItemSize()
         fetchData()
+        fetchDataTwo()
     }
     
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return allCryptos.count
+        return cryptoCurrency?.rates.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
-        let cryptoImages = DataManager.shared.cryptoImage
         
-        let currencyName = Cryptos.allCases
-        cell.CryptoLabel.text = currencyName[indexPath.item].rawValue
-        
-        cell.cryptoImage.image = UIImage(named: cryptoImages[indexPath.item])
+        cell.CryptoLabel.text = nameOfCurrency?.name
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
@@ -58,11 +40,8 @@ final class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
-        let cryptocell = allCryptos[indexPath.item]
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 0.6
-        showCurrentPrice(title: "\(cryptoCurrency?.rates)", message: "")
-       
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -109,6 +88,18 @@ extension MainViewController {
             switch result {
             case .success(let data):
                 self?.cryptoCurrency = data
+                self?.collectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    private func fetchDataTwo() {
+        NetworkManager.shared.fetch(Rate.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.nameOfCurrency = data
+                self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
