@@ -29,7 +29,7 @@ class NetworkManager {
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 completion(.failure(.noData))
-                print(error?.localizedDescription ?? "No Error description")
+                print(error ?? "No Error description")
                 return
             }
             
@@ -39,7 +39,7 @@ class NetworkManager {
                     completion(.success(type))
                 }
             } catch let error {
-                print(error.localizedDescription)
+                print(error)
             }
             
         }.resume()

@@ -21,7 +21,6 @@ class DataManager {
         "dot",
         "ify",
         "usd"
-    ]
-    
+    ]    
     private init () {}
 }

@@ -10,11 +10,13 @@ struct BtcRates: Codable {
 }
 
 struct Rate: Codable {
-    let name: String
-    let unit: String
+    let name, unit: String
     let value: Double
     let type: TypeOfCurrency
 }
+
 enum TypeOfCurrency: String, Codable {
-case crypto = "crypto"
+    case crypto = "crypto"
+    case fiat = "fiat"
+    case commodity = "commodity"
 }

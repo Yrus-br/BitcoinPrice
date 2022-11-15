@@ -7,24 +7,68 @@
 
 import UIKit
 
+private let reuseIdentifier = "Cell"
+
+private let cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
+
+private var btcPrice: String = ""
+private var ethPrice: String = ""
+private var ltcPrice: String = ""
+private var bchPrice: String = ""
+private var bnbPrice: String = ""
+private var eosPrice: String = ""
+private var xrpPrice: String = ""
+private var xlmPrice: String = ""
+private var linkPrice: String = ""
+private var dotPrice: String = ""
+private var yfiPrice: String = ""
+private var usdPrice: String = ""
+
+enum Cryptos: String, CaseIterable {
+    case btc = "Bitcoin"
+    case eth = "Etherium"
+    case ltc = "Litecoin"
+    case bch = "Bitcoin Cash"
+    case bnb = "Binance Coin"
+    case eos = "Eos"
+    case xrp = "XRP"
+    case xlm = "XLM"
+    case link = "ChainLink"
+    case dot = "Polkadot"
+    case yfi = "YFI"
+    case usd = "USD"
+}
+
+let cryptoImage: [UIImage] = [
+    UIImage(named: "bitcoin")!,
+    UIImage(named: "eth")!,
+    UIImage(named: "litecoin")!,
+    UIImage(named: "btccash")!,
+    UIImage(named: "bnb")!,
+    UIImage(named: "eos")!,
+    UIImage(named: "xrp")!,
+    UIImage(named: "xlm.icon")!,
+    UIImage(named: "chainlink")!,
+    UIImage(named: "dot")!,
+    UIImage(named: "ify")!,
+    UIImage(named: "usd")!
+]
+
 final class MainViewController: UICollectionViewController {
-    
-    var cryptoCurrency: BtcRates?
-    var nameOfCurrency: Rate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setItemSize()
         fetchData()
-        fetchDataTwo()
+        setItemSize()
+        
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return cryptoCurrency?.rates.count ?? 0
+        return Cryptos.allCases.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -32,7 +76,11 @@ final class MainViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
         
-        cell.CryptoLabel.text = nameOfCurrency?.name
+        let currencyName = Cryptos.allCases
+        
+        cell.cryptoImage.image = cryptoImage[indexPath.item]
+        cell.CryptoLabel.text = currencyName[indexPath.item].rawValue
+        
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
@@ -40,8 +88,38 @@ final class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
+        let currency = Cryptos.allCases
+        let selectedCurrency = currency[indexPath.item]
         let cell = collectionView.cellForItem(at: indexPath)
+        
         cell?.alpha = 0.6
+        
+        switch selectedCurrency {
+        case .btc:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: btcPrice)
+        case .eth:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: ethPrice)
+        case .ltc:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: ltcPrice)
+        case .bch:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: bchPrice)
+        case .bnb:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: bnbPrice)
+        case .eos:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: eosPrice)
+        case .xrp:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: xrpPrice)
+        case .xlm:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: xlmPrice)
+        case .link:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: linkPrice)
+        case .dot:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: dotPrice)
+        case .yfi:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: yfiPrice)
+        default:
+            showCurrentPrice(title: "Price for 1 BTC is:", message: usdPrice)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -49,8 +127,9 @@ final class MainViewController: UICollectionViewController {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
     }
-    
-    // MARK: Private Methods
+}
+
+extension MainViewController {
     
     private func setItemSize() {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
@@ -61,6 +140,24 @@ final class MainViewController: UICollectionViewController {
             width: (collectionView.frame.size.width - 70) / 2,
             height: collectionView.frame.size.height / 5
         )
+    }
+    
+    private func fetchData() {
+        guard let url = URL(string: cryptoUrl) else { return }
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "Error")
+                return
+            }
+            do {
+                let decoder = try JSONDecoder().decode(Rates.self, from: data)
+                self?.setPrices(currency: decoder.rates)
+            } catch {
+                print(error)
+                return
+            }
+            
+        }.resume()
     }
     
     private func showCurrentPrice(
@@ -78,31 +175,51 @@ final class MainViewController: UICollectionViewController {
         message.addAction(okButton)
         present(message, animated: true)
     }
-}
-
-// MARK: Networking
-
-extension MainViewController {
-    private func fetchData() {
-        NetworkManager.shared.fetch(BtcRates.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.cryptoCurrency = data
-                self?.collectionView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    
+    func setPrices(currency: Currency) {
+        DispatchQueue.main.async {
+            btcPrice = self.formatPrice(currency.btc)
+            ethPrice = self.formatPrice(currency.eth)
+            ltcPrice = self.formatPrice(currency.ltc)
+            bchPrice = self.formatPrice(currency.bch)
+            bnbPrice = self.formatPrice(currency.bnb)
+            eosPrice = self.formatPrice(currency.eos)
+            xrpPrice = self.formatPrice(currency.xrp)
+            xlmPrice = self.formatPrice(currency.xlm)
+            linkPrice = self.formatPrice(currency.link)
+            dotPrice = self.formatPrice(currency.dot)
+            yfiPrice = self.formatPrice(currency.yfi)
+            usdPrice = self.formatPrice(currency.usd)
         }
     }
-    private func fetchDataTwo() {
-        NetworkManager.shared.fetch(Rate.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.nameOfCurrency = data
-                self?.collectionView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+    
+    func formatPrice(_ price: Price) -> String {
+        String(format: "%.4f %@", price.value, price.unit)
+    }
+    
+    struct Rates: Codable {
+        let rates: Currency
+    }
+    
+    struct Currency: Codable {
+        let btc: Price
+        let eth: Price
+        let ltc: Price
+        let bch: Price
+        let bnb: Price
+        let eos: Price
+        let xrp: Price
+        let xlm: Price
+        let link: Price
+        let dot: Price
+        let yfi: Price
+        let usd: Price
+    }
+    
+    struct Price: Codable {
+        let name: String
+        let unit: String
+        let value: Double
+        let type: String
     }
 }
