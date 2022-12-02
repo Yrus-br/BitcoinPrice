@@ -5,18 +5,35 @@
 //  Created by Jorgen Shiller on 08.11.2022.
 //
 
-struct BtcRates: Codable {
-    let rates: [String: Rate]
-}
+import Foundation
+import Alamofire
 
-struct Rate: Codable {
-    let name, unit: String
+struct BtcRates {
+    let rates: [String: Rates]
+    
+    init(rates: [String : Rates]) {
+        self.rates = rates
+    }
+    
+//    static func getCurrencyInfo(from value: Any) -> [BtcRates] {
+//        guard let rate = value as? [String: Rates] else { return [] }
+//        guard let rates = rate["rates"] as? [[String: Any]] else { return [] }
+//        return rates.map { BtcRates(rates: $0)}
+//    }
+}
+struct Rates {
+    let name: String
+    let unit: String
     let value: Double
-    let type: TypeOfCurrency
+    let type: TypeEnum
 }
 
-enum TypeOfCurrency: String, Codable {
-    case crypto = "crypto"
-    case fiat = "fiat"
-    case commodity = "commodity"
+struct TypeEnum {
+    let crypto: String
+    let commodity: String
+    let fiat: String
+}
+
+enum Link: String {
+    case cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
 }
