@@ -9,7 +9,8 @@ import UIKit
 
 class CryptoCell: UICollectionViewCell {
     @IBOutlet var cryptoImage: UIImageView!
-    @IBOutlet var CryptoLabel: UILabel!  
+    @IBOutlet var CryptoLabel: UILabel!
+    
+    func configure() {
+    }
 }
-
-

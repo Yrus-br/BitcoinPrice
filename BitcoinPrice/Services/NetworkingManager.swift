@@ -11,14 +11,13 @@ import Alamofire
 class NetworkManager {
     static let shared = NetworkManager()
     
-    func fetchPerson(from url: String, completion: @escaping(Result<[BtcRates], AFError>) -> Void) {
+    func fetchPerson(from url: String, completion: @escaping(Result<Any, AFError> ) -> Void) {
         AF.request(url)
             .validate()
             .responseJSON() { dataResponse in
                 switch dataResponse.result {
                 case .success(let value):
-//                    let currencys = BtcRates.getCurrencyInfo(from: value)
-                    completion(.success(value as? [BtcRates] ?? []))
+                    completion(.success(value))
                 case .failure(let error):
                     completion(.failure(error))
                 }

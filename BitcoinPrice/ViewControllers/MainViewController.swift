@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 
 final class MainViewController: UICollectionViewController {
     
-    private var allCurrencys: [BtcRates] = []
+    private var allCurrencys: [[String: Rates]] = [[:]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +28,15 @@ final class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return DataManager.shared.cryptoImage.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
-        
+        cell.configure()
+        cell.cryptoImage.image = DataManager.shared.cryptoImage[indexPath.item]
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
@@ -52,13 +53,17 @@ final class MainViewController: UICollectionViewController {
                                  didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
+        print(allCurrencys)
     }
     
     private func getData() {
         NetworkManager.shared.fetchPerson(from: Link.cryptoUrl.rawValue) { [weak self] result in
             switch result {
             case .success(let currency):
-                self?.allCurrencys = currency
+                if let coin = currency as? BtcRates {
+                    self?.allCurrencys.append(coin.rates)
+                } else {
+                }
                 self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
