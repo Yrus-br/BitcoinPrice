@@ -6,29 +6,35 @@
 //
 
 import Foundation
-import Alamofire
+import UIKit
 
 struct BtcRates {
-    let rates: Currency
+    let rates: currencys
 }
 
-struct Currency {
+struct currencys {
     let btc: Rates
-    let eth: Rates
 }
 
-struct Rates {
+struct Rates: Decodable {
     let name: String
     let unit: String
     let value: Double
-    let type: TypeOfCurrency
+    let type: String
 }
-
-enum TypeOfCurrency: String {
-    case commodity = "commodity"
-    case crypto = "crypto"
-    case fiat = "fiat"
-}
+////    enum CodingKeys: String, CodingKey {
+////        case name = "name"
+////        case unit = "unit"
+////        case value = "value"
+////        case type = "type"
+////    }
+//}
+//
+//enum TypeOfCurrency: String {
+//    case commodity = "commodity"
+//    case crypto = "crypto"
+//    case fiat = "fiat"
+//}
 
 enum Link: String {
     case cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
