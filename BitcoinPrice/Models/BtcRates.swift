@@ -9,47 +9,25 @@ import Foundation
 import Alamofire
 
 struct BtcRates {
-    
-    let rates: [String: Rates]
-    
-    init(value: [String:Any]) {
-        rates = value["rates"] as? [String: Rates] ?? [:]
-    }
+    let rates: Currency
+}
 
-    
-    static func getCurrency(from value: Any) -> [BtcRates] {
-        guard let currency = value as? [String: Rates] else { return [] }
-        guard let coin = currency as? [[String: Rates]] else { return [] }
-        return coin.map { BtcRates(value: $0)}
-    }
+struct Currency {
+    let btc: Rates
+    let eth: Rates
 }
 
 struct Rates {
     let name: String
     let unit: String
     let value: Double
-    let type: TypeOfCuttency
-    
-    init(item: [String: Any]) {
-        name = item["name"] as? String ?? ""
-        unit = item["unit"] as? String ?? ""
-        value = item["value"] as? Double ?? 0
-        
-        let types = item["type"] as? [String: String] ?? [:]
-        type = TypeOfCuttency(value: types)
-    }
+    let type: TypeOfCurrency
 }
 
-struct TypeOfCuttency{
-    var commodity = "commodity"
-    var crypto = "crypto"
-    var fiat = "fiat"
-    
-    init(value: [String: String]) {
-        commodity = value["name"] ?? ""
-        crypto = value["crypto"] ?? ""
-        fiat = value["fiat"] ?? ""
-    }
+enum TypeOfCurrency: String {
+    case commodity = "commodity"
+    case crypto = "crypto"
+    case fiat = "fiat"
 }
 
 enum Link: String {
