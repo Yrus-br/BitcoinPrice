@@ -53,6 +53,7 @@ final class MainViewController: UICollectionViewController {
                                  didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
+        print(allCurrencys)
     }
     
     private func getData() {
@@ -62,7 +63,7 @@ final class MainViewController: UICollectionViewController {
                 print(value)
                 self?.allCurrencys = value
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
         }
     }

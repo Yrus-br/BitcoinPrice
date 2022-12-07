@@ -8,34 +8,28 @@
 import Foundation
 import UIKit
 
-struct BtcRates {
-    let rates: currencys
+struct Rates: Codable {
+    let rates: Currencys
 }
 
-struct currencys {
-    let btc: Rates
+struct Currencys: Codable {
+    let btc: Price
+    let eth: Price
+    let ltc: Price
+    let bch: Price
+    let bnb: Price
+    let eos: Price
+    let xrp: Price
+    let xlm: Price
+    let link: Price
+    let dot: Price
+    let yfi: Price
+    let usd: Price
 }
 
-struct Rates: Decodable {
+struct Price: Codable {
     let name: String
     let unit: String
     let value: Double
     let type: String
-}
-////    enum CodingKeys: String, CodingKey {
-////        case name = "name"
-////        case unit = "unit"
-////        case value = "value"
-////        case type = "type"
-////    }
-//}
-//
-//enum TypeOfCurrency: String {
-//    case commodity = "commodity"
-//    case crypto = "crypto"
-//    case fiat = "fiat"
-//}
-
-enum Link: String {
-    case cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
 }

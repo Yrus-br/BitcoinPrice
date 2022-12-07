@@ -26,3 +26,7 @@ class DataManager {
     ]    
     private init () {}
 }
+
+enum Link: String {
+    case cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
+}
