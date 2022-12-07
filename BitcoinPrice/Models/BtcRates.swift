@@ -5,31 +5,33 @@
 //  Created by Jorgen Shiller on 08.11.2022.
 //
 
+// MARK: Need to add init for models to create array of currency's for collection view 
+
 import Foundation
-import Alamofire
+import UIKit
 
-struct BtcRates {
-    let rates: Currency
+struct Rates: Codable {
+    let rates: Currencys
 }
 
-struct Currency {
-    let btc: Rates
-    let eth: Rates
+struct Currencys: Codable {
+    let btc: Price
+    let eth: Price
+    let ltc: Price
+    let bch: Price
+    let bnb: Price
+    let eos: Price
+    let xrp: Price
+    let xlm: Price
+    let link: Price
+    let dot: Price
+    let yfi: Price
+    let usd: Price
 }
 
-struct Rates {
+struct Price: Codable {
     let name: String
     let unit: String
     let value: Double
-    let type: TypeOfCurrency
-}
-
-enum TypeOfCurrency: String {
-    case commodity = "commodity"
-    case crypto = "crypto"
-    case fiat = "fiat"
-}
-
-enum Link: String {
-    case cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
+    let type: String
 }

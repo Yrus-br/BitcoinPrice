@@ -7,13 +7,11 @@
 
 import UIKit
 
-
-
 private let reuseIdentifier = "Cell"
 
 final class MainViewController: UICollectionViewController {
     
-    private var allCurrencys: [[String: Rates]] = [[:]]
+    private var allCurrencys: [Price] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +43,8 @@ final class MainViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        print(allCurrencys)
         cell?.alpha = 0.6
+        print(allCurrencys)
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -57,16 +55,13 @@ final class MainViewController: UICollectionViewController {
     }
     
     private func getData() {
-        NetworkManager.shared.fetchPerson(from: Link.cryptoUrl.rawValue) { [weak self] result in
+        NetworkManager.shared.fetchData(Price.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
             switch result {
-            case .success(let currency):
-                if let coin = currency as? BtcRates {
-                    self?.allCurrencys.append(coin.rates)
-                } else {
-                }
-                self?.collectionView.reloadData()
+            case .success(let value):
+                print(value)
+                self?.allCurrencys.append(value)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
         }
     }

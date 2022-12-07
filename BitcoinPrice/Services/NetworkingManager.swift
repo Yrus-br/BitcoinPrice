@@ -8,23 +8,40 @@
 import Foundation
 import Alamofire
 
+enum NetworkError: Error {
+    case invalidURL
+    case noData
+}
+
 class NetworkManager {
     static let shared = NetworkManager()
+    private init() {}
     
-    func fetchData(from url: String, completion: @escaping(Result<BtcRates, AFError> ) -> Void) {
-        AF.request(url)
-            .validate()
-            .responseJSON() { dataResponse in
-                switch dataResponse.result {
-                case .success(let value):
-                    guard let currency = value as? BtcRates else { return }
-                    print(currency)
-                    completion(.success(currency))
-                case .failure(let error):
-                    completion(.failure(error))
+    func fetchData<T: Decodable>(_ type: T.Type, from url: String, completion: @escaping (Result<T, NetworkError> ) -> Void) {
+        guard let url = URL(string: url) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                completion(.failure(.noData))
+                print(error ?? "")
+                return
+            }
+            
+            do {
+                let type = try JSONDecoder().decode(T.self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(type))
                 }
             }
+            catch let error {
+                print(error)
+            }
+        }.resume()
+        
     }
-
-    private init() {}
 }
+
+
