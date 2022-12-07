@@ -5,6 +5,8 @@
 //  Created by Jorgen Shiller on 08.11.2022.
 //
 
+// MARK: Need to add init for models to create array of currency's for collection view 
+
 import Foundation
 import UIKit
 

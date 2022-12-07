@@ -36,12 +36,12 @@ class NetworkManager {
                     completion(.success(type))
                 }
             }
-                catch let error {
-                    print(error)
-                }
+            catch let error {
+                print(error)
+            }
         }.resume()
-            
-        }
+        
     }
+}
 
 
