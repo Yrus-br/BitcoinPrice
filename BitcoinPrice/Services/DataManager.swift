@@ -25,6 +25,7 @@ class DataManager {
         UIImage(named: "usd")
     ]    
     private init () {}
+    
 }
 
 enum Link: String {

@@ -11,6 +11,7 @@ private let reuseIdentifier = "Cell"
 
 final class MainViewController: UICollectionViewController {
     
+     var rate: Rates!
     private var allCurrencys: [Price] = []
     
     override func viewDidLoad() {
@@ -18,6 +19,8 @@ final class MainViewController: UICollectionViewController {
         
         getData()
         setItemSize()
+        
+        allCurrencys = Currencys.getCurrency(rate.rates)()
         
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
@@ -55,11 +58,11 @@ final class MainViewController: UICollectionViewController {
     }
     
     private func getData() {
-        NetworkManager.shared.fetchData(Price.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
+        NetworkManager.shared.fetchData(Rates.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
             switch result {
             case .success(let value):
                 print(value)
-                self?.allCurrencys.append(value)
+                self?.rate = value
             case .failure(let error):
                 print(error)
             }
