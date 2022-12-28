@@ -12,10 +12,20 @@ private let reuseIdentifier = "Cell"
 final class MainViewController: UICollectionViewController {
     
     private var allCurrencys: Currency?
+    private var currencyArray: [Info] = []
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSearchController()
         getData()
         setItemSize()
         
@@ -26,7 +36,7 @@ final class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return DataManager.shared.cryptoImage.count
+        return currencyArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -34,7 +44,7 @@ final class MainViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
         cell.configure()
-        cell.CryptoLabel.text = "\(allCurrencys?.data.count)"
+        cell.CryptoLabel.text = "currencyArray.count"
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
@@ -44,14 +54,30 @@ final class MainViewController: UICollectionViewController {
                                  didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 0.6
-        print(allCurrencys?.data.first)
+        print(currencyArray.count)
     }
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView,
                                  didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
         print()
+    }
+    
+    private func setupSearchController() {
+//        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.barTintColor = .white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.font = UIFont.boldSystemFont(ofSize: 17)
+            textField.textColor = .white
+        }
     }
     
     private func getData() {
@@ -78,5 +104,17 @@ extension MainViewController {
             width: (collectionView.frame.size.width - 70) / 2,
             height: collectionView.frame.size.height / 5
         )
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text ?? "")
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        currencyArray = allCurrencys?.data.filter { character in
+            character.id.lowercased().contains(searchText.lowercased())
+        } ?? []
+        
+        collectionView.reloadData()
     }
 }
