@@ -29,5 +29,5 @@ class DataManager {
 }
 
 enum Link: String {
-    case cryptoUrl = "https://api.coingecko.com/api/v3/exchange_rates"
+    case cryptoUrl = "https://api.coincap.io/v2/assets"
 }

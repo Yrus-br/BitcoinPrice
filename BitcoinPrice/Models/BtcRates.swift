@@ -7,69 +7,41 @@
 
 // MARK: Need to add init for models to create array of currency's for collection view 
 
-import Foundation
-import UIKit
-
-struct Rates: Codable {
-    let rates: Currencys
-    
-    init(rates: Currencys) {
-        self.rates = rates
-    }
-    
+// MARK: - Currency
+struct Currency: Decodable {
+    let data: [[String: String?]]
+    let timestamp: Int
 }
 
-struct Currencys: Codable {
-    
-    let btc: Price
-    let eth: Price
-    let ltc: Price
-    let bch: Price
-    let bnb: Price
-    let eos: Price
-    let xrp: Price
-    let xlm: Price
-    let link: Price
-    let dot: Price
-    let yfi: Price
-    let usd: Price
-    
-    func getCurrency() -> [Price] {
-        var arrayOfCurrencys: [Price] = []
-        
-        arrayOfCurrencys.append(btc)
-        
-        return []
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.btc = try container.decode(Price.self, forKey: .btc)
-        self.eth = try container.decode(Price.self, forKey: .eth)
-        self.ltc = try container.decode(Price.self, forKey: .ltc)
-        self.bch = try container.decode(Price.self, forKey: .bch)
-        self.bnb = try container.decode(Price.self, forKey: .bnb)
-        self.eos = try container.decode(Price.self, forKey: .eos)
-        self.xrp = try container.decode(Price.self, forKey: .xrp)
-        self.xlm = try container.decode(Price.self, forKey: .xlm)
-        self.link = try container.decode(Price.self, forKey: .link)
-        self.dot = try container.decode(Price.self, forKey: .dot)
-        self.yfi = try container.decode(Price.self, forKey: .yfi)
-        self.usd = try container.decode(Price.self, forKey: .usd)
-    }
-}
+//struct Info: Decodable {
+//    let id: String
+//    let rank: String?
+//    let symbol: String?
+//    let name: String?
+//    let supply: String?
+//    let maxSupply: String?
+//    let marketCapUsd: String?
+//    let volumeUsd24Hr: String?
+//    let priceUsd: String?
+//    let changePercent24Hr: String?
+//    let vwap24Hr: String?
+//    let explorer: String?
 
-struct Price: Codable {
-    let name: String
-    let unit: String
-    let value: Double
-    let type: String
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.unit = try container.decode(String.self, forKey: .unit)
-        self.value = try container.decode(Double.self, forKey: .value)
-        self.type = try container.decode(String.self, forKey: .type)
-    }
-}
+//}
+
+//enum Info: String, Decodable {
+//    case id,
+//    case rank,
+//    case symbol,
+//    case name,
+//    case supply,
+//    case maxSupply,
+//    case marketCapUsd,
+//    case volumeUsd24Hr,
+//    case priceUsd,
+//    case changePercent24Hr,
+//    case vwap24Hr,
+//    case explorer
+//
+//}
+/*{"id":"bitcoin","rank":"1","symbol":"BTC","name":"Bitcoin","supply":"19245556.0000000000000000","maxSupply":"21000000.0000000000000000","marketCapUsd":"319459807934.2221828691107352","volumeUsd24Hr":"5643502638.9417971953957937","priceUsd":"16599.1467294695036542","changePercent24Hr":"-0.3261389041799068","vwap24Hr":"16654.0971741319270375","explorer":"https://blockchain.info/"} */

@@ -11,16 +11,13 @@ private let reuseIdentifier = "Cell"
 
 final class MainViewController: UICollectionViewController {
     
-     var rate: Rates!
-    private var allCurrencys: [Price] = []
+    private var allCurrencys: Currency?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getData()
         setItemSize()
-        
-        allCurrencys = Currencys.getCurrency(rate.rates)()
         
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
@@ -37,7 +34,7 @@ final class MainViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
         cell.configure()
-        cell.cryptoImage.image = DataManager.shared.cryptoImage[indexPath.item]
+        cell.CryptoLabel.text = "\(allCurrencys?.data.count)"
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
@@ -47,22 +44,22 @@ final class MainViewController: UICollectionViewController {
                                  didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 0.6
-        print(allCurrencys)
+        print(allCurrencys?.data.first)
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
-        print(allCurrencys)
+        print()
     }
     
     private func getData() {
-        NetworkManager.shared.fetchData(Rates.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
+        NetworkManager.shared.fetchData(Currency.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
             switch result {
             case .success(let value):
-                print(value)
-                self?.rate = value
+               self?.allCurrencys = value
+                self?.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
