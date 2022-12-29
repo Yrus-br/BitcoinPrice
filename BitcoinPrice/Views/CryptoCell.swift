@@ -11,6 +11,8 @@ class CryptoCell: UICollectionViewCell {
     @IBOutlet var cryptoImage: UIImageView!
     @IBOutlet var CryptoLabel: UILabel!
     
-    func configure() {
+    func configure(with currency: Info?) {
+        CryptoLabel.text = currency?.name
+        cryptoImage.image = DataManager.shared.cryptoImage.first as? UIImage
     }
 }

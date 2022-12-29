@@ -36,15 +36,17 @@ final class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return currencyArray.count
+        isFiltering ? currencyArray.count : allCurrencys?.data.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
-        cell.configure()
-        cell.CryptoLabel.text = "currencyArray.count"
+        
+        let currency = isFiltering ? currencyArray[indexPath.row] : allCurrencys?.data[indexPath.row]
+        cell.configure(with: currency)
+        cell.CryptoLabel.text = currency?.name
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 3
         return cell
