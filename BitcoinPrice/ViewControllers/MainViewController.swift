@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-final class MainViewController: UICollectionViewController {
+final class MainViewController: UICollectionViewController, UISearchResultsUpdating {
     
     private var allCurrencys: Currency?
     private var currencyArray: [Info] = []
@@ -69,7 +69,7 @@ final class MainViewController: UICollectionViewController {
     }
     
     private func setupSearchController() {
-//        searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.barTintColor = .white

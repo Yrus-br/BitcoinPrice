@@ -4,12 +4,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bitcoin Price in:-->
+        <!--Cryptocurrencies:-->
         <scene sceneID="aHk-ie-ml0">
             <objects>
                 <collectionViewController id="HOr-Yb-eAg" customClass="MainViewController" customModule="BitcoinPrice" sceneMemberID="viewController">
@@ -54,6 +55,7 @@
                                 <connections>
                                     <outlet property="CryptoLabel" destination="IDw-rr-NO0" id="iiK-TU-AgL"/>
                                     <outlet property="cryptoImage" destination="jSZ-5I-ekD" id="KrQ-sK-JXq"/>
+                                    <segue destination="zBA-WR-MKn" kind="show" id="GJx-cX-HZa"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -62,7 +64,7 @@
                             <outlet property="delegate" destination="HOr-Yb-eAg" id="Yig-Mr-2I1"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Bitcoin Price in:" id="bk1-Pk-u2c"/>
+                    <navigationItem key="navigationItem" title="Cryptocurrencies:" id="bk1-Pk-u2c"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mn-u3-yGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -86,9 +88,28 @@
             </objects>
             <point key="canvasLocation" x="1541.2213740458014" y="11.971830985915494"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="16f-GT-bY8">
+            <objects>
+                <viewController id="zBA-WR-MKn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rW6-jo-Vhz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Naa-eB-ffd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dub-Cg-wRi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zch-5n-0OC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3199" y="12"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
