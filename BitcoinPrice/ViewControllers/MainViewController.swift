@@ -86,7 +86,7 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
         NetworkManager.shared.fetchData(Currency.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
             switch result {
             case .success(let value):
-               self?.allCurrencys = value
+                self?.allCurrencys = value
                 self?.collectionView.reloadData()
             case .failure(let error):
                 print(error)
@@ -107,7 +107,7 @@ extension MainViewController {
             height: collectionView.frame.size.height / 5
         )
     }
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text ?? "")
     }

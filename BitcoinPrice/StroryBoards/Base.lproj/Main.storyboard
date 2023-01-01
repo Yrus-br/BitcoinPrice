@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="1541.2213740458014" y="11.971830985915494"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="16f-GT-bY8">
             <objects>
-                <viewController id="zBA-WR-MKn" sceneMemberID="viewController">
+                <viewController id="zBA-WR-MKn" customClass="DetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rW6-jo-Vhz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
