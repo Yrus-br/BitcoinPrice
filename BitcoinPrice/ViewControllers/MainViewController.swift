@@ -55,7 +55,6 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
                                  didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 0.6
-        print(currencyArray.count)
     }
     
     
@@ -64,8 +63,16 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
                                  didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.alpha = 1
-        print()
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailsVC = segue.destination as? DetailsViewController else { return }
+        detailsVC.currency = sender as? Currency
+        detailsVC.information = sender as? Info
+    }
+
     
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
