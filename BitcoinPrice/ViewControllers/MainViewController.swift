@@ -88,20 +88,20 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
         }
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text ?? "")
+    }
+    
     private func getData() {
-        NetworkManager.shared.fetchData(Currency.self, from: Link.cryptoUrl.rawValue) { [weak self] result in
-            switch result {
-            case .success(let value):
-                self?.allCurrencys = value
-                self?.collectionView.reloadData()
-            case .failure(let error):
+        Task {
+            do {
+                allCurrencys = try await NetworkManager.shared.fetchData()
+                collectionView.reloadData()
+            } catch let error {
                 print(error)
             }
         }
     }
-}
-
-extension MainViewController {
     
     private func setItemSize() {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
@@ -112,10 +112,6 @@ extension MainViewController {
             width: (collectionView.frame.size.width - 70) / 2,
             height: collectionView.frame.size.height / 5
         )
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text ?? "")
     }
     
     private func filterContentForSearchText(_ searchText: String) {
