@@ -43,7 +43,7 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "crypto", for: indexPath)
         guard let cell = cell as? CryptoCell else { return UICollectionViewCell() }
         
-        let currency = isFiltering ? currencyArray[indexPath.row] : allCurrencys?.data[indexPath.row]
+        let currency = isFiltering ? currencyArray[indexPath.item] : allCurrencys?.data[indexPath.item]
         cell.configure(with: currency)
         cell.CryptoLabel.text = currency?.name
         cell.layer.borderColor = UIColor.lightGray.cgColor
@@ -68,9 +68,12 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
+        let currency = isFiltering
+        ? currencyArray[indexPath.item]
+        : allCurrencys?.data[indexPath.item]
         guard let detailsVC = segue.destination as? DetailsViewController else { return }
-        detailsVC.currency = sender as? Currency
-        detailsVC.information = sender as? Info
+        detailsVC.information = currency
     }
 
     

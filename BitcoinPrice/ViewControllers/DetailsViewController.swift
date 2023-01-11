@@ -14,7 +14,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet var rankOfCurrency: UILabel!
     @IBOutlet var marketCupUSD: UILabel!
     
-    var currency: Currency?
     var information: Info?
     
     override func viewDidLoad() {
@@ -24,9 +23,10 @@ class DetailsViewController: UIViewController {
     }
     
     private func configure() {
-        information = currency?.data.first
         nameOfCurrency.text = information?.name
         symbolOfCurrency.text = information?.symbol
+        rankOfCurrency.text = information?.rank
+        marketCupUSD.text = information?.marketCapUsd
     }
     
 }
