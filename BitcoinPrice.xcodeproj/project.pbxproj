@@ -16,7 +16,6 @@
 		3F7BCA7D2917EE8C0059A63B /* CryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */; };
 		3F86845B291AC20700DC0F9C /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86845A291AC20700DC0F9C /* NetworkingManager.swift */; };
 		3F86845F291AC24400DC0F9C /* BtcRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86845E291AC24400DC0F9C /* BtcRates.swift */; };
-		3F868461291AC59900DC0F9C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F868460291AC59900DC0F9C /* DataManager.swift */; };
 		3FE3510F295E518E00C1AFD4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3510E295E518E00C1AFD4 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		3F7BCA7C2917EE8C0059A63B /* CryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCell.swift; sourceTree = "<group>"; };
 		3F86845A291AC20700DC0F9C /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		3F86845E291AC24400DC0F9C /* BtcRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtcRates.swift; sourceTree = "<group>"; };
-		3F868460291AC59900DC0F9C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3FE3510E295E518E00C1AFD4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				3F86845A291AC20700DC0F9C /* NetworkingManager.swift */,
-				3F868460291AC59900DC0F9C /* DataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,7 +215,6 @@
 				3F86845F291AC24400DC0F9C /* BtcRates.swift in Sources */,
 				3F7BCA1E2916FCBB0059A63B /* AppDelegate.swift in Sources */,
 				3FE3510F295E518E00C1AFD4 /* DetailsViewController.swift in Sources */,
-				3F868461291AC59900DC0F9C /* DataManager.swift in Sources */,
 				3F7BCA7D2917EE8C0059A63B /* CryptoCell.swift in Sources */,
 				3F86845B291AC20700DC0F9C /* NetworkingManager.swift in Sources */,
 				3F7BCA202916FCBB0059A63B /* SceneDelegate.swift in Sources */,

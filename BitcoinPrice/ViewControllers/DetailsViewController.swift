@@ -8,11 +8,11 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-
+    
     @IBOutlet var nameOfCurrency: UILabel!
     @IBOutlet var symbolOfCurrency: UILabel!
     @IBOutlet var rankOfCurrency: UILabel!
-    @IBOutlet var marketCupUSD: UILabel!
+    @IBOutlet var currentPrice: UILabel!
     
     var information: Info?
     
@@ -20,13 +20,16 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         configure()
         
+        title = information?.name
+        
     }
     
     private func configure() {
         nameOfCurrency.text = information?.name
         symbolOfCurrency.text = information?.symbol
         rankOfCurrency.text = information?.rank
-        marketCupUSD.text = information?.marketCapUsd
+        currentPrice.text = information?.priceUsd
     }
+    
     
 }

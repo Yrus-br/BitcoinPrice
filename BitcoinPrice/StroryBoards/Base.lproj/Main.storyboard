@@ -109,8 +109,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="marketCupUSD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ht-C1-LNb">
-                                        <rect key="frame" x="0.0" y="85" width="118.66666666666667" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentPrice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ht-C1-LNb">
+                                        <rect key="frame" x="0.0" y="85" width="93.666666666666671" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -127,7 +127,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dub-Cg-wRi"/>
                     <connections>
-                        <outlet property="marketCupUSD" destination="7Ht-C1-LNb" id="rk5-2z-JQr"/>
+                        <outlet property="currentPrice" destination="7Ht-C1-LNb" id="rk5-2z-JQr"/>
                         <outlet property="nameOfCurrency" destination="bKn-fd-VTJ" id="7BR-MD-Fx8"/>
                         <outlet property="rankOfCurrency" destination="v27-xo-gBx" id="ED9-rd-i7Z"/>
                         <outlet property="symbolOfCurrency" destination="Te3-M6-mMm" id="fu1-xo-nAq"/>

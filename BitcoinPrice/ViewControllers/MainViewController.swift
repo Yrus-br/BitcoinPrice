@@ -28,6 +28,8 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
         getData()
         setItemSize()
         
+//        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
@@ -105,6 +107,10 @@ final class MainViewController: UICollectionViewController, UISearchResultsUpdat
             }
         }
     }
+    
+//    @objc func refreshData() -> Void {
+//        getData()
+//    }
     
     private func setItemSize() {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
